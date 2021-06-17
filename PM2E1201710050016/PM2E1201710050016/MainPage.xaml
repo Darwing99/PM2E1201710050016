@@ -4,21 +4,45 @@
              x:Class="PM2E1201710050016.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <StackLayout Margin="10">
+            <Frame BackgroundColor="White" Padding="24" CornerRadius="0">
+                <Grid>
+
+                    <Button HeightRequest="80" Grid.Row="0" Grid.Column="0"  Visual="Material" FontSize="10" Text="Nueva Ubicacion"></Button>
+                    <Button HeightRequest="80" Grid.Row="0"  Grid.Column="1"  Visual="Material"  FontSize="10"  Text="Ubicaciones Salvadas"></Button>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+       
+        <ScrollView>
+            <StackLayout Visual="Material">
+                
+          
+            <StackLayout Padding="10">
+                <Frame CornerRadius="20"  Visual="Material">
+                    <Grid>
+                        <Image Grid.Row="0" Source="https://www.mujeresnegocios.com/wp-content/uploads/2021/01/UTH.jpg"></Image>
+                    </Grid>
+
+                </Frame>
+                
+            </StackLayout>
+            <StackLayout  Padding="20">
+                    <Entry Visual="Material" Keyboard="Numeric" Text="14.01"  x:Name="latitud" Placeholder="Latitud Actual"/>
+                    <Entry Keyboard="Numeric" x:Name="longitud"  Text="-88.01" Visual="Material" Placeholder="Longitud Actual"/>
+                    <Editor Keyboard="Text" Visual="Material" x:Name="descripcion_larga" Placeholder="Describa La Ubicacion"/>
+
+                    <Editor  Keyboard="Text" Visual="Material"  x:Name="descripcion_corta" Placeholder="Descripcion Corta"/>
+                
+                <Grid>
+                        <Button HeightRequest="50" x:Name="Salvar" Clicked="Salvar_Clicked"  BackgroundColor="#368A37" Grid.Row="0" Visual="Material" Text="Salvar Ubicacion"></Button>
+                     <Button HeightRequest="50" Grid.Row="1" Visual="Material" Text="Ubicaciones Salvadas"></Button>
+                </Grid>
+            </StackLayout>
+            </StackLayout>
+
+        </ScrollView>
     </StackLayout>
 
 </ContentPage>
