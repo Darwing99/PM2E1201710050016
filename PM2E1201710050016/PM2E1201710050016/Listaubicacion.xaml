@@ -9,13 +9,13 @@
 
             <StackLayout  Padding="20">
 
-
-                <ListView BackgroundColor="#D5E2FA" Visual="Material"  x:Name="lista" ItemSelected="lista_ItemSelected" >
+           
+                <ListView RefreshControlColor="Aquamarine" BackgroundColor="#D5E2FA" Visual="Material"  x:Name="lista" ItemSelected="lista_ItemSelected" >
                         <ListView.ItemTemplate>
 
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid Visual="Material">
+                                <Grid Margin="10" Visual="Material">
                                         <Grid.RowDefinitions>
 
                                             <RowDefinition Height="auto"/>
@@ -30,21 +30,22 @@
 
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="{Binding id}" FontFamily="ubuntu" FontSize="14" Grid.Row="0" Grid.Column="0"></Label>
+                                        <Label  Text="{Binding id}" FontFamily="ubuntu" FontSize="14" Grid.Row="0" Grid.Column="0"></Label>
                                     <Label Text="{Binding descripcion_corta}" FontSize="14" Grid.Row="0" Grid.Column="1"></Label>
                                 </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+             
                 <Grid>
                     <Label x:Name="id" IsVisible="false"></Label>
                     <Label x:Name="direccion" IsVisible="false"></Label>
                     <Label x:Name="direccionlarga" IsVisible="false"></Label>
                     <Label x:Name="latitud" IsVisible="false"></Label>
                     <Label x:Name="longitud" IsVisible="false"></Label>
-                    <Button HeightRequest="80" Grid.Row="0" x:Name="Eliminar" Clicked="Eliminar_Clicked" Grid.Column="0" Visual="Material" Text="Eliminar"></Button>
-                    <Button HeightRequest="80" Grid.Row="0" x:Name="ShowMapa" Clicked="ShowMapa_Clicked" Grid.Column="1" Visual="Material" Text="Ver Mapa"></Button>
+                    <Button HeightRequest="50" Grid.Row="0" x:Name="Eliminar" BackgroundColor="#368A37"  Clicked="Eliminar_Clicked" Grid.Column="0" Visual="Material" Text="Eliminar"></Button>
+                    <Button HeightRequest="50" Grid.Row="0" x:Name="ShowMapa" Clicked="ShowMapa_Clicked" Grid.Column="1" Visual="Material" Text="Ver Mapa"></Button>
                 </Grid>
             
               

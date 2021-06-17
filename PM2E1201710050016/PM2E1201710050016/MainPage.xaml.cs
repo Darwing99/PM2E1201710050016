@@ -20,8 +20,8 @@ namespace PM2E1201710050016
         public MainPage()
         {
             InitializeComponent();
-
             locationGPS();
+           
 
         }
 
@@ -30,17 +30,18 @@ namespace PM2E1201710050016
         {
 
                 var location = CrossGeolocator.Current;
-              
-                if (location.IsListening )
+                
+                if (  !location.IsGeolocationEnabled || !location.IsGeolocationAvailable )
                 {
 
                     await DisplayAlert("Warning", " GPS no esta activo", "ok");
                     return;
                 }
-        
+                 if (!location.IsListening)
+                return;
             
            
-            await location.StartListeningAsync(TimeSpan.FromSeconds(2), 1);
+            await location.StartListeningAsync(TimeSpan.FromSeconds(10), 1);
         }
 
         

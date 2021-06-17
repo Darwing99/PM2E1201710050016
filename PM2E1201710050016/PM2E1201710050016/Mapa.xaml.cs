@@ -18,7 +18,25 @@ namespace PM2E1201710050016
         public Mapa()
         {
             InitializeComponent();
-           
+            locationGPS();
+        }
+
+        public async void locationGPS()
+        {
+
+            var location = CrossGeolocator.Current;
+
+            if (!location.IsGeolocationEnabled || !location.IsGeolocationAvailable)
+            {
+
+                await DisplayAlert("Warning", " GPS no esta activo", "ok");
+                return;
+            }
+            if (!location.IsListening)
+                return;
+
+
+            await location.StartListeningAsync(TimeSpan.FromSeconds(10), 1);
         }
         protected async override void OnAppearing()
         {
@@ -35,66 +53,9 @@ namespace PM2E1201710050016
             m.Pins.Add(pin);
             m.MoveToRegion(mapSpan: MapSpan.FromCenterAndRadius(new Position(Convert.ToDouble(lat.Text), Convert.ToDouble(longit.Text)), Distance.FromKilometers(1)));
            
-            /*var localizacion = await Geolocation.GetLastKnownLocationAsync();
-            if (localizacion == null)
-            {
-                localizacion = await Geolocation.GetLocationAsync();
-               
-
-            }
-            else
-            {
-                await DisplayAlert("Warning", "GPS APAGADO", "Ok");
-            } 
-            m.MoveToRegion(MapSpan.FromCenterAndRadius(new Position(localizacion.Latitude, localizacion.Longitude), Distance.FromKilometers(1)));
+        
            
-           
-            try
-            {
-                var localization = CrossGeolocator.Current;
-
-                if (!CrossGeolocator.IsSupported)
-                {
-                    await DisplayAlert("Error","No se cargo el plugn","Ok");
-                }
-                {
-
-                }
-                if (localization != null)
-                {
-                    if (localization.IsGeolocationEnabled)
-                    {
-                         
-
-                        localization.PositionChanged += Localization_PositionChanged;
-                        if (!localization.IsListening)
-                        {
-                            await localization.StartListeningAsync(TimeSpan.FromSeconds(10), 100);
-                            await DisplayAlert("Warning", "GPS APAGADO", "Ok");
-                        }
-                        var centroMap = new Position(Convert.ToDouble(lat.Text), Convert.ToDouble(longit.Text));
-                        m.MoveToRegion(new MapSpan(centroMap, 1, 1));
-                    }
-                   
-                
-                }
-            }
-            catch (Exception) { }
-          
-        }
-
-
-        private void Localization_PositionChanged(object sender, Plugin.Geolocator.Abstractions.PositionEventArgs e)
-        {
-
-
-
-            var centroMapa = new Position(e.Position.Latitude, e.Position.Longitude);
-            m.MoveToRegion(new MapSpan(centroMapa, 1, 1));
-
-
-
-            */
+        
         }
     }
 }

@@ -83,34 +83,53 @@ namespace PM2E1201710050016
         private async void Eliminar_Clicked(object sender, EventArgs e)
         {
             var ubicacion = await crud.getUbicacionId(Convert.ToInt32(id.Text));
-            if (ubicacion != null)
-            {
-                await crud.Delete(ubicacion);
-                await DisplayAlert("Delete", "Datos Eliminados", "ok");
+          
 
-            }
-            else
+            bool answer = await DisplayAlert("Delete", "Desea borrar ubicacion ubicacion indicada?", "si", "No");
+            if (answer)
             {
-                await DisplayAlert("Warning", "No ha seleccionado ubicacion para borrar","Ok");
+              if (ubicacion != null)
+                {
+                    await crud.Delete(ubicacion);
+                    await DisplayAlert("Delete", "Datos Eliminados", "ok");
+                    mostrarDatos();
+                }
+                else
+                {
+                    await DisplayAlert("Warning", "No ha seleccionado ubicacion para borrar","Ok");
+                }
             }
 
         }
 
         private async void ShowMapa_Clicked(object sender, EventArgs e)
         {
-            var getLista = new Lista
+            bool answer = await DisplayAlert("Accion", "Desea ir a la ubicacion indicada?", "si", "No");
+            if (answer)
             {
-                id = Convert.ToInt32(id.Text),
-                descripcion_corta =direccion.Text,
-                latitude = Convert.ToDouble(latitud.Text),
-                longitude = Convert.ToDouble(longitud.Text),
-                descripcion_ubicacion = direccionlarga.Text
+                if (id.Text != null)
+                {
+                    var getLista = new Lista
+                    {
+                        id = Convert.ToInt32(id.Text),
+                        descripcion_corta = direccion.Text,
+                        latitude = Convert.ToDouble(latitud.Text),
+                        longitude = Convert.ToDouble(longitud.Text),
+                        descripcion_ubicacion = direccionlarga.Text
 
-            };
+                    };
 
-            var mapa = new Mapa();
-            mapa.BindingContext = getLista;
-            await Navigation.PushAsync(mapa);
+                    var mapa = new Mapa();
+                    mapa.BindingContext = getLista;
+                    await Navigation.PushAsync(mapa);
+                }
+                else
+                {
+                    await DisplayAlert("Warning", "Seleccione Ubicacion", "Ok");
+                }
+            }
+          
+          
           
 
         }
