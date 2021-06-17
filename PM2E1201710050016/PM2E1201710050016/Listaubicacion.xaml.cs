@@ -68,7 +68,11 @@ namespace PM2E1201710050016
 
                     };
                     id.Text = (listaSeleccionada.id).ToString();
-                 
+                    direccion.Text = (listaSeleccionada.descripcion_corta);
+                    direccionlarga.Text = listaSeleccionada.descripcion_ubicacion;
+                    latitud.Text = listaSeleccionada.latitude.ToString();
+                    longitud.Text = listaSeleccionada.longitude.ToString();
+
                 }
 
             }
@@ -84,7 +88,6 @@ namespace PM2E1201710050016
                 await crud.Delete(ubicacion);
                 await DisplayAlert("Delete", "Datos Eliminados", "ok");
 
-
             }
             else
             {
@@ -95,9 +98,19 @@ namespace PM2E1201710050016
 
         private async void ShowMapa_Clicked(object sender, EventArgs e)
         {
+            var getLista = new Lista
+            {
+                id = Convert.ToInt32(id.Text),
+                descripcion_corta =direccion.Text,
+                latitude = Convert.ToDouble(latitud.Text),
+                longitude = Convert.ToDouble(longitud.Text),
+                descripcion_ubicacion = direccionlarga.Text
 
-            
-            await Navigation.PushAsync(new Mapa());
+            };
+
+            var mapa = new Mapa();
+            mapa.BindingContext = getLista;
+            await Navigation.PushAsync(mapa);
           
 
         }

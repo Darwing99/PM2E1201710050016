@@ -10,6 +10,7 @@ using SQLite;
 using PM2E1201710050016.model;
 using Xamarin.Essentials;
 using Plugin.Geolocator;
+using Xamarin.Forms.Maps;
 
 namespace PM2E1201710050016
 {
@@ -27,28 +28,29 @@ namespace PM2E1201710050016
 
         public async void locationGPS()
         {
-            try
-            {
+
                 var location = CrossGeolocator.Current;
-                await location.StartListeningAsync(TimeSpan.FromSeconds(10), 100);
-                if (location == null)
+              
+                if (location.IsListening )
                 {
 
-                    await DisplayAlert("Warning", "GPS no esta activo", "ok");
+                    await DisplayAlert("Warning", " GPS no esta activo", "ok");
                     return;
                 }
-            }
-            catch (Exception e)
-            {
-
-            }
+        
+            
+           
+            await location.StartListeningAsync(TimeSpan.FromSeconds(2), 1);
         }
+
+        
+
+       
         protected async override void OnAppearing()
         {
-         
-          
+       
             base.OnAppearing();
-
+            locationGPS();
         }
 
         public async void guardarUbicacion()
@@ -57,8 +59,8 @@ namespace PM2E1201710050016
             double _latitud = ((latitud.Text)==null || latitud.Text=="" ) ? 14.01: Convert.ToDouble(latitud.Text);
             double _longitud = ((longitud.Text) == null || longitud.Text == "") ? -88.01 :Convert.ToDouble(longitud.Text);
 
-            string _descripcion = descripcion_larga.Text;
-            string _descripcion_corta = descripcion_corta.Text;
+            string _descripcion =(descripcion_larga.Text=="") ? null:descripcion_larga.Text;
+            string _descripcion_corta = (descripcion_corta.Text == "") ? null : descripcion_corta.Text;
          
             
              if (validar.validarUbicacion(_descripcion))

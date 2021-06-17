@@ -4,9 +4,15 @@
              xmlns:mapa="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="PM2E1201710050016.Mapa">
     <ContentPage.Content>
-        <StackLayout>
+
+       
+        <StackLayout> 
+         <Label x:Name="lat" Text="{Binding latitude}" IsVisible="false"></Label>
+        <Label  x:Name="longit" Text="{Binding longitude}" IsVisible="false"></Label>
+        <Label  x:Name="descr" Text="{Binding descripcion_corta}" IsVisible="false"></Label>
+        <Label  x:Name="ubic" Text="{Binding descripcion_ubicacion}" IsVisible="false"></Label>
             <Frame>
-                <mapa:Map  HorizontalOptions="FillAndExpand" HeightRequest="400"  x:Name="m" IsShowingUser="True">
+                <mapa:Map   MapType="Satellite" HorizontalOptions="FillAndExpand" HeightRequest="600"  x:Name="m" IsShowingUser="True">
                     
                 </mapa:Map>
             </Frame>

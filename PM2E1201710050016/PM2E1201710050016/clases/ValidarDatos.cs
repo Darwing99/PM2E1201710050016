@@ -18,7 +18,7 @@ namespace PM2E1201710050016.clases
         public bool validarUbicacion(string descripcion_larga)
         {
 
-            respuesta = (descripcion_larga!= null  ) ? false : true;
+            respuesta = (descripcion_larga!= null ) ? false : true;
 
             return respuesta;
         }

@@ -40,6 +40,9 @@
                 <Grid>
                     <Label x:Name="id" IsVisible="false"></Label>
                     <Label x:Name="direccion" IsVisible="false"></Label>
+                    <Label x:Name="direccionlarga" IsVisible="false"></Label>
+                    <Label x:Name="latitud" IsVisible="false"></Label>
+                    <Label x:Name="longitud" IsVisible="false"></Label>
                     <Button HeightRequest="80" Grid.Row="0" x:Name="Eliminar" Clicked="Eliminar_Clicked" Grid.Column="0" Visual="Material" Text="Eliminar"></Button>
                     <Button HeightRequest="80" Grid.Row="0" x:Name="ShowMapa" Clicked="ShowMapa_Clicked" Grid.Column="1" Visual="Material" Text="Ver Mapa"></Button>
                 </Grid>

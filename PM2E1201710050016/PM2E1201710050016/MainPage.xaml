@@ -23,15 +23,15 @@
             <StackLayout Padding="10">
                 <Frame CornerRadius="20"  Visual="Material">
                     <Grid>
-                        <Image Grid.Row="0" Source="https://www.mujeresnegocios.com/wp-content/uploads/2021/01/UTH.jpg"></Image>
+                            <Image Grid.Row="0" Source="https://www.uth.hn/wp-content/uploads/2019/12/logo-1.png"></Image>
                     </Grid>
 
                 </Frame>
                 
             </StackLayout>
             <StackLayout  Padding="20">
-                    <Entry Visual="Material" Keyboard="Numeric" Text="14.01"  x:Name="latitud" Placeholder="Latitud Actual"/>
-                    <Entry Keyboard="Numeric" x:Name="longitud"  Text="-88.01" Visual="Material" Placeholder="Longitud Actual"/>
+                    <Entry Visual="Material" IsEnabled="True" Keyboard="Numeric" Text="14.01"  x:Name="latitud" Placeholder="Latitud Actual"/>
+                    <Entry Keyboard="Numeric" IsEnabled="True" x:Name="longitud"  Text="-88.01" Visual="Material" Placeholder="Longitud Actual"/>
                     <Editor Keyboard="Text" Visual="Material" x:Name="descripcion_larga" Placeholder="Describa La Ubicacion"/>
 
                     <Editor  Keyboard="Text" Visual="Material"  x:Name="descripcion_corta" Placeholder="Descripcion Corta"/>
