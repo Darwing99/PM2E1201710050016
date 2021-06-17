@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mapa="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="PM2E1201710050016.MainPage">
 
     <StackLayout>
@@ -9,7 +10,7 @@
                 <Grid>
 
                     <Button HeightRequest="80" Grid.Row="0" Grid.Column="0"  Visual="Material" FontSize="10" Text="Nueva Ubicacion"></Button>
-                    <Button HeightRequest="80" Grid.Row="0"  Grid.Column="1"  Visual="Material"  FontSize="10"  Text="Ubicaciones Salvadas"></Button>
+                    <Button x:Name="Salvadas" Clicked="Salvadas_Clicked" HeightRequest="80" Grid.Row="0"  Grid.Column="1"  Visual="Material"  FontSize="10"  Text="Ubicaciones Salvadas"></Button>
 
                 </Grid>
             </Frame>

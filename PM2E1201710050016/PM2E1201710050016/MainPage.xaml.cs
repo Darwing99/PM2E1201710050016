@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using PM2E1201710050016.clases ;
 using SQLite;
 using PM2E1201710050016.model;
+using Xamarin.Essentials;
+using Plugin.Geolocator;
 
 namespace PM2E1201710050016
 {
@@ -17,6 +19,36 @@ namespace PM2E1201710050016
         public MainPage()
         {
             InitializeComponent();
+
+            locationGPS();
+
+        }
+
+
+        public async void locationGPS()
+        {
+            try
+            {
+                var location = CrossGeolocator.Current;
+                await location.StartListeningAsync(TimeSpan.FromSeconds(10), 100);
+                if (location == null)
+                {
+
+                    await DisplayAlert("Warning", "GPS no esta activo", "ok");
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        protected async override void OnAppearing()
+        {
+         
+          
+            base.OnAppearing();
+
         }
 
         public async void guardarUbicacion()
@@ -61,6 +93,7 @@ namespace PM2E1201710050016
                     await DisplayAlert("Success", "Ubicacion Guardada", "Ok");
                     descripcion_corta.Text = "";
                     descripcion_larga.Text = "";
+                    await Navigation.PushAsync(new Listaubicacion());
                 }
                 catch (SQLiteException e)
                 {
@@ -78,6 +111,11 @@ namespace PM2E1201710050016
         private  void Salvar_Clicked(object sender, EventArgs e)
         {
              guardarUbicacion();
+        }
+
+        private async void Salvadas_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Listaubicacion());
         }
     }
 }
