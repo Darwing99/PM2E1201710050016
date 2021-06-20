@@ -38,8 +38,8 @@
            
            
             <StackLayout  Padding="20">
-                    <Entry Margin="0,15,0,15"  Visual="Material" IsEnabled="True" Keyboard="Numeric" Text="14.01"  x:Name="latitud" Placeholder="Latitud Actual"/>
-                    <Entry Margin="0,15,0,15" Keyboard="Numeric" IsEnabled="True" x:Name="longitud"  Text="-88.01" Visual="Material" Placeholder="Longitud Actual"/>
+                    <Entry Margin="0,15,0,15"  Visual="Material" IsEnabled="False" Keyboard="Numeric"  x:Name="latitud" Placeholder="Latitud Actual"/>
+                    <Entry Margin="0,15,0,15" Keyboard="Numeric" IsEnabled="False" x:Name="longitud"   Visual="Material" Placeholder="Longitud Actual"/>
                     <Editor Margin="0,15,0,15" Keyboard="Text" Visual="Material" x:Name="descripcion_larga" Placeholder="Describa La Ubicacion"/>
 
                     <Editor Margin="0,15,0,15"  Keyboard="Text" Visual="Material"  x:Name="descripcion_corta" Placeholder="Descripcion Corta"/>

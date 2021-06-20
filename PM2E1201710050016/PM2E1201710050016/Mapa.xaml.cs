@@ -33,10 +33,15 @@ namespace PM2E1201710050016
                 return;
             }
             if (!location.IsListening)
+            { 
+                await location.StartListeningAsync(TimeSpan.FromSeconds(10), 1);
+
                 return;
+            }
+               
 
 
-            await location.StartListeningAsync(TimeSpan.FromSeconds(10), 1);
+           
         }
         protected async override void OnAppearing()
         {

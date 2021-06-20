@@ -16,43 +16,66 @@ namespace PM2E1201710050016
 {
     public partial class MainPage : ContentPage
     {
+        double dlatitud, dlongitud;
         ValidarDatos validar = new ValidarDatos();
         public MainPage()
         {
             InitializeComponent();
             locationGPS();
-           
+
 
         }
-
-
-        public async void locationGPS()
-        {
-
-                var location = CrossGeolocator.Current;
-                
-                if (  !location.IsGeolocationEnabled || !location.IsGeolocationAvailable )
-                {
-
-                    await DisplayAlert("Warning", " GPS no esta activo", "ok");
-                    return;
-                }
-                 if (!location.IsListening)
-                return;
-            
-           
-            await location.StartListeningAsync(TimeSpan.FromSeconds(10), 1);
-        }
-
-        
-
-       
-        protected async override void OnAppearing()
+   protected async override void OnAppearing()
         {
        
             base.OnAppearing();
             locationGPS();
         }
+
+        public async void locationGPS()
+        {
+
+                var location = CrossGeolocator.Current;
+                 location.DesiredAccuracy=50;
+                
+                if (  !location.IsGeolocationEnabled || !location.IsGeolocationAvailable )
+                {
+
+                    await DisplayAlert("Warning", " GPS no esta activo", "ok");
+                   
+            }
+            else
+            { 
+                if (!location.IsListening)
+                   {  
+                await location.StartListeningAsync(TimeSpan.FromSeconds(10), 1);
+              
+
+                    }
+                location.PositionChanged += (posicion, args) =>
+                 {
+                     var ubicacion = args.Position;
+                     latitud.Text = ubicacion.Latitude.ToString();
+                     dlatitud = Convert.ToDouble(latitud.Text);
+                     longitud.Text = ubicacion.Longitude.ToString();
+                     dlongitud = Convert.ToDouble(longitud.Text);
+                 };
+
+            }
+                
+              
+            
+           
+          
+
+                
+             
+        }
+
+        
+
+       
+     
 
         public async void guardarUbicacion()
         {
@@ -84,8 +107,8 @@ namespace PM2E1201710050016
                     var ubicacion = new Ubicacion()
                     {
                         id = 0,
-                        latitude = _latitud,
-                        longitude = _longitud,
+                        latitude = Convert.ToDouble(latitud.Text),
+                        longitude = Convert.ToDouble(longitud.Text),
                         descripcion_ubicacion = _descripcion,
                         descripcion_corta = _descripcion_corta
 
